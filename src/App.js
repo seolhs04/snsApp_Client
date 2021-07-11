@@ -1,9 +1,9 @@
 /*eslint-disable-next-line*/
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useParams } from 'react';
 import axios from 'axios';
 import './App.css';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import Header from './Components/Header';
 import CreateForm from './Components/CreateForm';
@@ -16,9 +16,7 @@ function App() {
   useEffect(function(){
     axios('/postData.json')
     .then(function(result){
-      result.data.sort(function(a,b){
-        return b.id - a.id;
-      })
+      result.data.sort((a,b)=> b.id - a.id)
       postChange(result.data)
     })
     .catch(function(err){
@@ -33,7 +31,12 @@ function App() {
       <Route exact path='/'>
         <h2>메인페이지</h2>
         <button className='btn'><Link to='/create'>글 작성</Link></button>
-        <PostCard></PostCard>
+        {
+          post && post.map(function(a,i){
+            return <PostCard post={a} key={i}></PostCard>
+          })
+        }
+        
       </Route>
       
       <Route exact path='/create'>
@@ -41,15 +44,6 @@ function App() {
        <CreateForm></CreateForm>
       </Route>
 
-      {/* <button onClick={function(){
-        axios('/data.json')
-        .then(function(result){
-          console.log(result.data)
-        })
-        .catch(function(err){
-          console.log(err)
-        })
-      }}>get data</button> */}
     </div>
   );
 }
