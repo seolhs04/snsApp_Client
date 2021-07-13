@@ -17,21 +17,24 @@ function App() {
 
       <Header></Header>
       <Route exact path='/'>
-        <Main post={post} postChange={postChange}></Main>
+        <div className='pageBody'>
+         <Main post={post} postChange={postChange}></Main>
+        </div>
       </Route>
       
       <Route exact path='/create'>
-        <h2>글작성</h2>
-       <CreateForm></CreateForm>
+        <div className='pageBody'>
+          <CreateForm></CreateForm>
+        </div>
       </Route>
 
       <Route path={`/update/:path`}>
-        <h2>글수정</h2>
-        <UpdateForm></UpdateForm>
+        <div className='pageBody'>
+          <UpdateForm></UpdateForm>
+        </div>
       </Route>
 
       <Route path={`/delete/:path`}>
-        <h2>글삭제</h2>
         <Delete></Delete>
       </Route>
 

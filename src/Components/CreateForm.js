@@ -1,8 +1,8 @@
-// eslint-disable-next-line
+/* eslint-disable */
 
 import React, { useState } from 'react';
 import '../App.css';
-import { Form } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -11,10 +11,10 @@ function CreateForm(){
     let [descriptionOfPost, dOP_change] = useState('')
 
     return(
-        <div>
+        <Card className='container mt-3'>
             <Form className='container'>
                 <Form.Group className="mb-3">
-                    <Form.Label>제목</Form.Label>
+                    <Form.Label className='mt-3'>제목</Form.Label>
                     <Form.Control id='title' name='title' type="text" onChange={
                         (e)=>{
                             tOP_change(e.target.value);
@@ -30,7 +30,7 @@ function CreateForm(){
                     }/>
                 </Form.Group>
                 <Link to='/'>
-                    <button className='btn btn-primary' onClick={
+                    <button className='btn btn-primary mb-3' onClick={
                         ()=>{
                             axios.post('/create_process', {'title':titleOfPost , 'description':descriptionOfPost})
                             .then(()=>{
@@ -41,10 +41,9 @@ function CreateForm(){
                             })
                         }
                     }>제출</button>
-                 </Link>
+                </Link>
             </Form>
-            
-        </div>
+        </Card>
     )
 }
 

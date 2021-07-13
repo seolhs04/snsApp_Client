@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
 
 import PostCard from './PostCard';
 
@@ -20,13 +21,14 @@ function Main(props){
     },[])
     return(
       <div>
-      <h2>메인페이지</h2>
-          <button className='btn'><Link to='/create'>글 작성</Link></button>
-          {
-            props.post && props.post.map(function(a,i){
-              return <PostCard post={a} key={i}></PostCard>
-            })
-          }
+        <Card id='makePostContainer' className='container mt-2'>
+          <Button id='makePostBtn' variant='outline-success' as={Link} to='/create'>글 작성</Button>
+        </Card>
+        {
+          props.post && props.post.map(function(a,i){
+            return <PostCard post={a} key={i}></PostCard>
+          })
+        }
       </div>
     );
   }

@@ -12,9 +12,9 @@ function PostCard(props){
         <Card className='container mt-2'>
           <Card.Body>
             <Card.Title>
-              {props.post.title}
-              <Button variant="btn" onClick={() => setModalShow(true)}>
-                · · ·
+            <Card className='postsTitle'>{props.post.title}</Card>
+              <Button className='detailBtn' variant="outline-danger" onClick={() => setModalShow(true)}>
+                ···
               </Button>
               <MyVerticallyCenteredModal show={modalShow} post={props.post} onHide={() => setModalShow(false)}/>
             </Card.Title>
@@ -35,11 +35,11 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      {/* <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {props.post.title}
         </Modal.Title>
-      </Modal.Header>
+      </Modal.Header> */}
       <Modal.Body>
       <Container>
           <Row>
