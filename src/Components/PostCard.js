@@ -1,4 +1,4 @@
-/*eslint-disable-next-line*/
+/* eslint-disable */
 
 import React from 'react'
 import { Card, Button, Modal, Container, Row, Col } from 'react-bootstrap';
@@ -43,12 +43,12 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
       <Container>
           <Row>
-            <Col xs={12} md={8} className='text-center'>
+            <Col xs={12} md={18} className='text-center'>
               <Link to={`/update/${props.post.id}`}>글 수정</Link>
             </Col>
             <hr/>
-            <Col xs={12} md={8} className='text-center'>
-              글 삭제
+            <Col xs={12} md={18} className='text-center'>
+              <Link to={`/delete/${props.post.id}`}>글 삭제</Link>
             </Col>
           </Row>
         </Container>

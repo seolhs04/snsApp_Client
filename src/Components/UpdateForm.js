@@ -1,21 +1,38 @@
-// eslint-disable-next-line
+/* eslint-disable */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function CreateForm(){
+function UpdateForm(){
     let [titleOfPost, tOP_change] = useState('')
     let [descriptionOfPost, dOP_change] = useState('')
+    var { path } = useParams();
+
+    useEffect(function(){
+        axios('/postData.json')
+        .then(function(result){
+          result.data.find(function(a){
+              if(a.id == path){
+                tOP_change(a.title);
+                dOP_change(a.description);
+              }
+          })
+        })
+        .catch(function(err){
+          console.log(err)
+        })
+      },[])
 
     return(
         <div>
             <Form className='container'>
                 <Form.Group className="mb-3">
                     <Form.Label>제목</Form.Label>
-                    <Form.Control id='title' name='title' type="text" onChange={
+                    <Form.Control id='title' name='title' type="text" placeholder={`${titleOfPost}`} onChange={
                         (e)=>{
                             tOP_change(e.target.value);
                         }
@@ -23,7 +40,7 @@ function CreateForm(){
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>내용</Form.Label>
-                    <Form.Control id='description' name='description' as="textarea" rows={4} onChange={
+                    <Form.Control id='description' name='description' as="textarea" placeholder={`${descriptionOfPost}`} rows={4} onChange={
                         (e)=>{
                             dOP_change(e.target.value);
                         }
@@ -32,7 +49,7 @@ function CreateForm(){
                 <Link to='/'>
                     <button className='btn btn-primary' onClick={
                         ()=>{
-                            axios.post('/create_process', {'title':titleOfPost , 'description':descriptionOfPost})
+                            axios.post('/update_process', {'id':path ,'title':titleOfPost , 'description':descriptionOfPost})
                             .then(()=>{
                                 
                             })
@@ -48,4 +65,4 @@ function CreateForm(){
     )
 }
 
-export default CreateForm;
+export default UpdateForm;

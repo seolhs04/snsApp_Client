@@ -1,47 +1,38 @@
-/*eslint-disable-next-line*/
+/* eslint-disable */
 
-import React, { useEffect, useState, useParams } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Link, Route } from 'react-router-dom';
 
 import Header from './Components/Header';
 import CreateForm from './Components/CreateForm';
-import PostCard from './Components/PostCard';
+import Main from './Components/Main';
+import UpdateForm from './Components/UpdateForm';
+import Delete from './Components/Delete';
 
 function App() {
-
   let [post,postChange] = useState()
-
-  useEffect(function(){
-    axios('/postData.json')
-    .then(function(result){
-      result.data.sort((a,b)=> b.id - a.id)
-      postChange(result.data)
-    })
-    .catch(function(err){
-      console.log(err)
-    })
-  },[post])
-
   return (
     <div className="App">
 
       <Header></Header>
       <Route exact path='/'>
-        <h2>메인페이지</h2>
-        <button className='btn'><Link to='/create'>글 작성</Link></button>
-        {
-          post && post.map(function(a,i){
-            return <PostCard post={a} key={i}></PostCard>
-          })
-        }
-        
+        <Main post={post} postChange={postChange}></Main>
       </Route>
       
       <Route exact path='/create'>
         <h2>글작성</h2>
        <CreateForm></CreateForm>
+      </Route>
+
+      <Route path={`/update/:path`}>
+        <h2>글수정</h2>
+        <UpdateForm></UpdateForm>
+      </Route>
+
+      <Route path={`/delete/:path`}>
+        <h2>글삭제</h2>
+        <Delete></Delete>
       </Route>
 
     </div>
