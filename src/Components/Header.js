@@ -14,6 +14,7 @@ function Header(){
             type="search"
             placeholder="검색"
             aria-label="Search"
+            id='searchInput'
           />
           <Button variant="outline-success">Search</Button>
         </Form>

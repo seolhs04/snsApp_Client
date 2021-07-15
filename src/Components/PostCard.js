@@ -9,7 +9,7 @@ function PostCard(props){
   const [modalShow, setModalShow] = React.useState(false);
 
     return(
-        <Card className='container mt-2'>
+        <Card className='postCard container mt-2'>
           <Card.Body>
             <Card.Title>
             <Card className='postsTitle'>{props.post.title}</Card>
