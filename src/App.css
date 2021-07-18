@@ -27,7 +27,6 @@
 #makePostContainer{
     padding: 0;
     border:none;
-    min-width: 40rem;
     max-width: 40rem;
 }
 #makePostBtn a{
@@ -56,7 +55,6 @@
     overflow-y: scroll;
 }
 .postCard{
-    min-width: 40rem;
     max-width: 40rem;
 }
 .card-title{
@@ -79,4 +77,9 @@
     #searchInput{
         width: 10rem;
     }
+}
+
+/* createForm */
+#thumbNail{
+    padding: 0
 }

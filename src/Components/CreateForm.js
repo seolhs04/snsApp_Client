@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 function CreateForm(){
     let [titleOfPost, tOP_change] = useState('')
     let [descriptionOfPost, dOP_change] = useState('')
+    let [imgData, imgData_change] = useState(null);
 
     return(
         <Card className='container mt-3'>
@@ -29,10 +30,27 @@ function CreateForm(){
                         }
                     }/>
                 </Form.Group>
+                <Form.Group className="mb-3">
+                    <div id='thumbNail' className='container mb-3'>
+                        {/* 사진 들어갈 공간 */}
+                    </div>
+                    <input type='file' id='imageInput' accept='image/*' name='img' onChange={(event)=>{
+                        var reader = new FileReader();
+                        reader.onload = function(event){
+                            var img = document.createElement('img');
+                            img.setAttribute('src', event.target.result);
+                            img.setAttribute('style', 'width:50%');
+                            img.setAttribute('class', 'image');
+                            document.getElementById('thumbNail').appendChild(img);
+                        }
+                        reader.readAsDataURL(event.target.files[0]);
+                        imgData_change(event.target.files[0]);
+                    }}/>
+                </Form.Group>
                 <Link to='/'>
                     <button className='btn btn-primary mb-3' onClick={
                         ()=>{
-                            axios.post('/create_process', {'title':titleOfPost , 'description':descriptionOfPost})
+                            axios.post('/create_process', {'title': titleOfPost, 'description': descriptionOfPost, 'test': formData})
                             .then(()=>{
                                 
                             })
@@ -46,5 +64,6 @@ function CreateForm(){
         </Card>
     )
 }
+
 
 export default CreateForm;
