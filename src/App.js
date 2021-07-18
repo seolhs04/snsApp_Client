@@ -9,6 +9,7 @@ import CreateForm from './Components/CreateForm';
 import Main from './Components/Main';
 import UpdateForm from './Components/UpdateForm';
 import Delete from './Components/Delete';
+import Test from './Components/Test';
 
 function App() {
   let [post,postChange] = useState()
@@ -36,6 +37,10 @@ function App() {
 
       <Route path={`/delete/:path`}>
         <Delete></Delete>
+      </Route>
+
+      <Route path={`/test`}>
+        <Test></Test>
       </Route>
 
     </div>
