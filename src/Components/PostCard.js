@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React from 'react'
-import { Card, Button, Modal, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Modal, Container, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -9,7 +9,9 @@ function PostCard(props){
   const [modalShow, setModalShow] = React.useState(false);
 
     return(
-        <Card className='postCard container mt-2'>
+      <div>
+        <Image src='/images/graham-pengelly-yyH95Gx_Fqc-unsplash.jpg' fluid />
+        <Card className='postCard container mt-2'>  
           <Card.Body>
             <Card.Title>
             <Card className='postsTitle'>{props.post.title}</Card>
@@ -24,6 +26,8 @@ function PostCard(props){
             </Card.Text>
           </Card.Body>
         </Card>
+      </div>
+        
     )
 }
 
