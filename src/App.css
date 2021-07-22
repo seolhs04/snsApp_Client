@@ -78,6 +78,9 @@
         width: 10rem;
     }
 }
+.postsImgs{
+    width: 100%;
+}
 
 /* createForm */
 #thumbNail{

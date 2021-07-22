@@ -31,7 +31,7 @@ function App() {
 
       <Route path={`/update/:path`}>
         <div className='pageBody'>
-          <UpdateForm></UpdateForm>
+          <UpdateForm post={post}></UpdateForm>
         </div>
       </Route>
 

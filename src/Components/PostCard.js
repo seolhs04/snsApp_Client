@@ -7,27 +7,25 @@ import { Link } from 'react-router-dom';
 
 function PostCard(props){
   const [modalShow, setModalShow] = React.useState(false);
-
     return(
-      <div>
-        <Image src='/images/graham-pengelly-yyH95Gx_Fqc-unsplash.jpg' fluid />
         <Card className='postCard container mt-2'>  
           <Card.Body>
             <Card.Title>
-            <Card className='postsTitle'>{props.post.title}</Card>
+            <Card className='postsTitle'>작성자</Card>
               <Button className='detailBtn' variant="outline-danger" onClick={() => setModalShow(true)}>
                 ···
               </Button>
               <MyVerticallyCenteredModal show={modalShow} post={props.post} onHide={() => setModalShow(false)}/>
             </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">작성자</Card.Subtitle>
+            {
+              props.post.image !== null ? <Image src={`/images/${props.post.image}`} className='mb-3 postsImgs' fluid /> : null
+            }
+            <Card.Title className="mb-2">{props.post.title}</Card.Title>
             <Card.Text>
               {props.post.description}
             </Card.Text>
           </Card.Body>
         </Card>
-      </div>
-        
     )
 }
 
