@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import Header from './Components/Header';
 import CreateForm from './Components/CreateForm';
@@ -17,31 +17,23 @@ function App() {
     <div className="App">
 
       <Header></Header>
+
+      <Switch>
       <Route exact path='/'>
-        <div className='pageBody'>
          <Main post={post} postChange={postChange}></Main>
-        </div>
       </Route>
       
-      <Route exact path='/create'>
-        <div className='pageBody'>
-          <CreateForm></CreateForm>
-        </div>
-      </Route>
+      <Route exact path='/create' component={CreateForm}/>
 
       <Route path={`/update/:path`}>
-        <div className='pageBody'>
           <UpdateForm post={post}></UpdateForm>
-        </div>
       </Route>
 
-      <Route path={`/delete/:path`}>
-        <Delete></Delete>
-      </Route>
+      <Route path={`/delete/:path`} component={Delete}/>
 
-      <Route path={`/test`}>
-        <Test></Test>
-      </Route>
+      <Route path={`/test`} component={Test}/>
+      </Switch>
+      
 
     </div>
   );

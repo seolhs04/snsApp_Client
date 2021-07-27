@@ -1,32 +1,35 @@
 /* eslint-disable */
 
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
-import { Form, Card } from 'react-bootstrap';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
+
 
 function Test(){
-    const [img, setImage] = useState(null);
-
+    const isPc = useMediaQuery({
+        query: "(min-width: 1024px) and (max-width: 1279px)"
+    });
+    const isTablet = useMediaQuery({
+        query: "(min-width: 768px) and (max-width: 1023px)"
+    });
+    const isTabletPC = useMediaQuery({
+        query: "(min-width: 768px) and (max-width: 1279px)"
+    });
+    const isMobileTablet = useMediaQuery({
+        query: "(max-width: 1023px)"
+    });
+    const isMobile = useMediaQuery({
+        query: "(max-width: 767px)"
+    });
     return (
-        <form encType='multipart/form-data' onSubmit={(e)=>{
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append('file', img)
-            axios.post('/create_process', formData)
-            .then(()=>{
-                console.log('이미지 업로드 완료')
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
-        }}>
-            <input name='photo' type='file' accept='image/*' onChange={(e)=>{
-                setImage(e.target.files[0]);
-            }}/>
-            <input type='submit'/>
-        </form>
+        <div>
+            {isPc && <p>pc</p>}
+            {isTablet && <p>tablet</p>}
+            {isTabletPC && <p>tablet_pc</p>}
+            {isMobileTablet && <p>mobile_tablet</p>}
+            {isMobile && <p>mobile</p>}
+        </div>
     );
 }
 
