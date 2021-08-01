@@ -19,9 +19,7 @@ function App() {
       <Header></Header>
 
       <Switch>
-      <Route exact path='/'>
-         <Main post={post} postChange={postChange}></Main>
-      </Route>
+      <Route exact path='/' component={Main}/>
       
       <Route exact path='/create' component={CreateForm}/>
 

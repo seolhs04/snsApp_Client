@@ -10,13 +10,28 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import axios from 'axios';
 
+function getPostData(){
+  return axios.get('/postData.json')
+  .then((result)=>{
+    return result.data
+  })
+  .catch((err)=>{
+    console.error(err)
+  })
+}
 
+function reducer(state, action){
+  state = getPostData();
+  return state
+}
+
+let store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider>
-       <App />
+      <Provider store={store}>
+        <App />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
